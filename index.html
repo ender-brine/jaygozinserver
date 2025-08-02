@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>بهترین جایگزین‌های Aternos - حکومت ماینکرافت</title>
+  <meta property="og:image" content="https://cdn.imgurl.ir/uploads/d54135_avatar-1009848210_3.jpg" />
+<meta property="og:title" content="حکومت ماینکرافت" />
+<meta property="og:description" content="جایگزین های اترنوس" />
+<meta property="og:url" content="https://ender-brine.github.io/jaygozinserver" />
+<meta property="og:type" content="website" />
+  <style>
+    :root {
+      --main-color: #7209b7;
+    }
+
+    body {
+      margin: 0;
+      font-family: Tahoma, sans-serif;
+      background-color: #1a1a1a;
+      color: #eee;
+      line-height: 1.6;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(10px);
+      padding: 8px 30px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      justify-content: center;
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(114, 9, 183, 0.4);
+      transition: box-shadow 0.3s ease, border 0.3s ease;
+      border: 2px solid transparent;
+      direction: rtl;
+    }
+
+    header:hover {
+      border-block-end: 2px solid var(--main-color);
+      box-shadow: 0 0 20px var(--main-color);
+    }
+
+    .logo {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 0px;
+      margin-left: auto;
+      margin-right: -15px;
+    }
+
+    .logo img {
+      width: 75px;
+      transition: 0.8s ease;
+    }
+
+    .logo span {
+      font-size: 25px;
+      font-weight: bold;
+      color: #fff;
+      text-shadow: 0 0 36px var(--main-color);
+    }
+
+    .menu-btn {
+      font-size: 28px;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+      display: none; 
+      position: relative;
+      padding: 10px;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    .menu-btn:hover, .menu-btn.open {
+      color: #7209b7;
+    }
+
+    .menu-btn:hover .bar {
+      background-color: #7209b7;
+    }
+
+    .menu-btn .bar {
+      display: block;
+      width: 30px;
+      height: 4px;
+      background: white;
+      margin: 6px 0;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .menu-btn.open .bar1 {
+      transform: translateY(10px) rotate(45deg);
+    }
+
+    .menu-btn.open .bar2 {
+      opacity: 0;
+    }
+
+    .menu-btn.open .bar3 {
+      transform: translateY(-10px) rotate(-45deg);
+    }
+
+    nav {
+      display: flex;
+      gap: 20px;
+    }
+
+    nav a {
+      color: #eee;
+      text-decoration: none;
+      font-size: 16px;
+      position: relative;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      bottom: -4px;
+      right: 0;
+      width: 0%;
+      height: 2px;
+      background-color: var(--main-color);
+      transition: 0.7s;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+      left: 0;
+      right: auto;
+    }
+
+    @media (max-width: 768px) {
+      .menu-btn {
+        display: block; 
+      } 
+      nav {
+        display: none;
+        flex-direction: column;
+        background: #111;
+        position: absolute;
+        top: 100px;
+        right: 10px;
+        padding: 20px;
+        border-radius: 8px;
+        gap: 10px;
+      }
+      nav.show {
+        display: flex;
+      }
+    }
+
+    /* Main Content Styles */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #1a1a1a 0%, #2d1b69 100%);
+      padding: 80px 0;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, #7209b7, #a855f7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      color: #ccc;
+    }
+
+    .btn {
+      display: inline-block;
+      background: linear-gradient(135deg, #7209b7, #a855f7);
+      color: white;
+      padding: 12px 30px;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(114, 9, 183, 0.4);
+    }
+
+    .section {
+      padding: 60px 0;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 50px;
+      color: white;
+    }
+
+    .intro-box {
+      background: #2a2a2a;
+      padding: 30px;
+      border-radius: 12px;
+      border: 2px solid rgba(114, 9, 183, 0.3);
+      margin-bottom: 40px;
+    }
+
+    .alternatives-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+      margin-bottom: 50px;
+    }
+
+    .alternative-card {
+      background: #2a2a2a;
+      padding: 25px;
+      border-radius: 12px;
+      border: 2px solid rgba(114, 9, 183, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .alternative-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(114, 9, 183, 0.3);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 15px;
+    }
+
+    .card-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: white;
+    }
+
+    .card-title {
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: white;
+    }
+
+    .card-description {
+      color: #ccc;
+      margin-bottom: 15px;
+    }
+
+    .features-list {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 20px;
+    }
+
+    .features-list li {
+      padding: 5px 0;
+      font-size: 0.9rem;
+      color: #bbb;
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .price {
+      font-weight: bold;
+      color: var(--main-color);
+    }
+
+    .rating {
+      color: #ffd700;
+    }
+
+    .comparison-table {
+      background: #2a2a2a;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 2px solid rgba(114, 9, 183, 0.3);
+    }
+
+    .comparison-table table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+      padding: 15px;
+      text-align: center;
+      border-bottom: 1px solid rgba(114, 9, 183, 0.2);
+    }
+
+    .comparison-table th {
+      background: rgba(114, 9, 183, 0.2);
+      font-weight: bold;
+    }
+
+    .comparison-table td:first-child {
+      text-align: right;
+      font-weight: bold;
+    }
+
+    .tips-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+    }
+
+    .tip-card {
+      background: #2a2a2a;
+      padding: 20px;
+      border-radius: 12px;
+      border: 2px solid rgba(114, 9, 183, 0.3);
+    }
+
+    .tip-title {
+      font-size: 1.1rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: var(--main-color);
+    }
+
+    .conclusion-box {
+      background: #2a2a2a;
+      padding: 40px;
+      border-radius: 12px;
+      border: 2px solid rgba(114, 9, 183, 0.3);
+      text-align: center;
+    }
+
+    footer {
+      background: #111;
+      padding: 30px 0;
+      text-align: center;
+      border-top: 2px solid rgba(114, 9, 183, 0.3);
+    }
+
+    .status-good { color: #4ade80; }
+    .status-warning { color: #fbbf24; }
+    .status-bad { color: #f87171; }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2rem; }
+      .alternatives-grid { grid-template-columns: 1fr; }
+      .comparison-table { font-size: 0.9rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="https://uploadkon.ir/uploads/e05801_25Untitled. 1.png" alt="لوگو" loading="lazy" />
+      <span>حکومت ماینکرافت</span>
+    </div>
+    <nav id="navMenu">
+      <a href="https://ender-brine.github.io/home" target="_blank">خانه</a>
+      <a href="https://ender-brine.github.io/about" target="_blank">درباره ما</a>
+      <a href="https://splus.ir/hokomatmine" target="_blank">کانال</a>
+      <a href="https://splus.ir/enderbrine" target="_blank">پشتیبانی</a>
+    </nav>
+    <button class="menu-btn" onclick="toggleMenu()">
+      <span class="bar bar1"></span>
+      <span class="bar bar2"></span>
+      <span class="bar bar3"></span>
+    </button>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <h1>بهترین جایگزین‌های Aternos</h1>
+      <p>آیا از کندی و محدودیت‌های Aternos خسته شده‌اید؟ بهترین سایت‌های جایگزین را کشف کنید!</p>
+      <a href="#alternatives" class="btn">مشاهده جایگزین‌ها</a>
+    </div>
+  </section>
+
+  <!-- Introduction -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">چرا به دنبال جایگزین Aternos باشیم؟</h2>
+      <div class="intro-box">
+        <p>Aternos یکی از محبوب‌ترین سرویس‌های هاست رایگان ماینکرافت است، اما با مشکلاتی همراه است:</p>
+        <ul style="margin-top: 20px;">
+          <li>🔴 صف طولانی برای راه‌اندازی سرور</li>
+          <li>🔴 محدودیت در تعداد پلاگین‌ها و مودها</li>
+          <li>🔴 کیفیت پایین اتصال و لگ</li>
+          <li>🔴 خاموش شدن خودکار سرور پس از مدت کوتاه</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="alternatives" class="section">
+    <div class="container">
+      <h2 class="section-title">بهترین جایگزین‌ها</h2>
+      
+      <div class="alternatives-grid">
+        <!-- Minehut -->
+        <div class="alternative-card">
+          <div class="card-header">
+            <div class="card-icon" style="background: linear-gradient(135deg, #10b981, #059669);">M</div>
+            <div class="card-title">Minehut</div>
+          </div>
+          <div class="card-description">
+            یکی از بهترین جایگزین‌های Aternos با امکانات عالی و سرعت بالا
+          </div>
+          <ul class="features-list">
+            <li>✅ بدون صف انتظار</li>
+            <li>✅ پشتیبانی از پلاگین‌های متنوع</li>
+            <li>✅ رابط کاربری ساده</li>
+            <li>✅ آپتایم بالا</li>
+          </ul>
+          <div class="card-footer">
+            <span class="price">رایگان</span>
+            <span class="rating">⭐ 4.5/5</span>
+          </div>
+        </div>
+
+        <!-- Server.pro -->
+        <div class="alternative-card">
+          <div class="card-header">
+            <div class="card-icon" style="background: linear-gradient(135deg, #3b82f6, #1d4ed8);">S</div>
+            <div class="card-title">Server.pro</div>
+          </div>
+          <div class="card-description">
+            سرویس قدرتمند با امکانات پیشرفته و کنترل کامل
+          </div>
+          <ul class="features-list">
+            <li>✅ کنترل کامل سرور</li>
+            <li>✅ پشتیبانی از مودپک‌ها</li>
+            <li>✅ بکاپ خودکار</li>
+            <li>✅ سرعت بالا</li>
+          </ul>
+          <div class="card-footer">
+            <span class="price">رایگان/پولی</span>
+            <span class="rating">⭐ 4.3/5</span>
+          </div>
+        </div>
+
+        <!-- PloudOS -->
+        <div class="alternative-card">
+          <div class="card-header">
+            <div class="card-icon" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);">P</div>
+            <div class="card-title">PloudOS</div>
+          </div>
+          <div class="card-description">
+            پلتفرم مدرن با رابط کاربری زیبا و امکانات حرفه‌ای
+          </div>
+          <ul class="features-list">
+            <li>✅ رابط مدرن و زیبا</li>
+            <li>✅ نصب آسان پلاگین</li>
+            <li>✅ مانیتورینگ لحظه‌ای</li>
+            <li>✅ پشتیبانی عالی</li>
+          </ul>
+          <div class="card-footer">
+            <span class="price">رایگان</span>
+            <span class="rating">⭐ 4.4/5</span>
+          </div>
+        </div>
+
+        <!-- Apex Hosting -->
+        <div class="alternative-card">
+          <div class="card-header">
+            <div class="card-icon" style="background: linear-gradient(135deg, #ef4444, #dc2626);">A</div>
+            <div class="card-title">Apex Hosting</div>
+          </div>
+          <div class="card-description">
+            سرویس حرفه‌ای با کیفیت بالا و پشتیبانی ۲۴/۷
+          </div>
+          <ul class="features-list">
+            <li>✅ کیفیت بسیار بالا</li>
+            <li>✅ پشتیبانی ۲۴/۷</li>
+            <li>✅ بکاپ روزانه</li>
+            <li>❌ فقط پولی</li>
+          </ul>
+          <div class="card-footer">
+            <span class="price status-warning">پولی</span>
+            <span class="rating">⭐ 4.8/5</span>
+          </div>
+        </div>
+
+       
+        <div class="alternative-card">
+          <div class="card-header">
+            <div class="card-icon" style="background: linear-gradient(135deg, #14b8a6, #0d9488);">F</div>
+            <div class="card-title">FreeMcServer</div>
+          </div>
+          <div class="card-description">
+            سرویس رایگان ساده برای شروع سریع
+          </div>
+          <ul class="features-list">
+            <li>✅ کاملاً رایگان</li>
+            <li>✅ راه‌اندازی سریع</li>
+            <li>✅ بدون ثبت‌نام پیچیده</li>
+            <li>⚠️ امکانات محدود</li>
+          </ul>
+          <div class="card-footer">
+            <span class="price">رایگان</span>
+            <span class="rating">⭐ 3.8/5</span>
+          </div>
+        </div>
+
+        <!-- Shockbyte -->
+        <div class="alternative-card">
+          <div class="card-header">
+            <div class="card-icon" style="background: linear-gradient(135deg, #f59e0b, #d97706);">S</div>
+            <div class="card-title">Shockbyte</div>
+          </div>
+          <div class="card-description">
+            گزینه اقتصادی با عملکرد مناسب برای سرورهای کوچک
+          </div>
+          <ul class="features-list">
+            <li>✅ قیمت مناسب</li>
+            <li>✅ نصب آسان</li>
+            <li>✅ پنل کنترل ساده</li>
+            <li>⚠️ محدودیت منابع</li>
+          </ul>
+          <div class="card-footer">
+            <span class="price status-warning">پولی</span>
+            <span class="rating">⭐ 4.1/5</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Comparison Table -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">مقایسه جامع</h2>
+      <div class="comparison-table">
+        <table>
+          <thead>
+            <tr>
+              <th>سرویس</th>
+              <th>قیمت</th>
+              <th>RAM</th>
+              <th>صف انتظار</th>
+              <th>پلاگین</th>
+              <th>امتیاز</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Aternos</td>
+              <td class="status-good">رایگان</td>
+              <td>1GB</td>
+              <td class="status-bad">بله</td>
+              <td class="status-warning">محدود</td>
+              <td>⭐ 3.5</td>
+            </tr>
+            <tr>
+              <td>Minehut</td>
+              <td class="status-good">رایگان</td>
+              <td>1GB</td>
+              <td class="status-good">خیر</td>
+              <td class="status-good">زیاد</td>
+              <td>⭐ 4.5</td>
+            </tr>
+            <tr>
+              <td>Server.pro</td>
+              <td class="status-warning">ترکیبی</td>
+              <td>2GB</td>
+              <td class="status-good">خیر</td>
+              <td class="status-good">نامحدود</td>
+              <td>⭐ 4.3</td>
+            </tr>
+            <tr>
+              <td>PloudOS</td>
+              <td class="status-good">رایگان</td>
+              <td>1.5GB</td>
+              <td class="status-good">خیر</td>
+              <td class="status-good">زیاد</td>
+              <td>⭐ 4.4</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tips -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">نکات مهم انتخاب سرویس</h2>
+      <div class="tips-grid">
+        <div class="tip-card">
+          <div class="tip-title">🎯 برای بازی‌های کوچک</div>
+          <p>اگر با دوستان کم بازی می‌کنید، Minehut یا PloudOS گزینه‌های عالی هستند.</p>
+        </div>
+        <div class="tip-card">
+          <div class="tip-title">🏢 برای سرورهای بزرگ</div>
+          <p>برای سرورهای حرفه‌ای، Apex Hosting یا Server.pro را انتخاب کنید.</p>
+        </div>
+        <div class="tip-card">
+          <div class="tip-title">💰 با بودجه محدود</div>
+          <p>FreeMcServer برای شروع مناسب است، اما امکانات محدودی دارد.</p>
+        </div>
+        <div class="tip-card">
+          <div class="tip-title">⚡ برای عملکرد بالا</div>
+          <p>اگر سرعت مهم است، سرویس‌های پولی مثل Shockbyte را در نظر بگیرید.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">نتیجه‌گیری</h2>
+      <div class="conclusion-box">
+        <p style="font-size: 1.1rem; margin-bottom: 20px;">
+          انتخاب جایگزین مناسب برای Aternos بستگی به نیازهای شما دارد. اگر به دنبال سرویس رایگان و قابل اعتماد هستید، 
+          <strong style="color: var(--main-color);">Minehut</strong> و <strong style="color: var(--main-color);">PloudOS</strong> 
+          بهترین گزینه‌ها هستند.
+        </p>
+        <p style="font-size: 1.1rem;">
+          برای کسانی که می‌خواهند در کیفیت سرویس سرمایه‌گذاری کنند، 
+          <strong style="color: var(--main-color);">Apex Hosting</strong> 
+          بهترین انتخاب محسوب می‌شود.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <footer style="text-align: center; color: #bbb; padding: 7px 0; background-color: #111; font-size: 14px; position: relative;">
+    <a href="https://ender-brine.github.io/home" target="_blank" style="position: absolute; left: 20px; top: 50%; transform: translateY(-50%); color: #bbb; text-decoration: none; font-size: 14px; transition: color 0.3s ease;" onmouseover="this.style.color='#7209b7'" onmouseout="this.style.color='#bbb'">
+      خانه
+    </a>
+    <p>&copy; 2025 - حکومت ماینکرافت</p>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const nav = document.getElementById('navMenu');
+      const menuBtn = document.querySelector('.menu-btn');
+      
+      nav.classList.toggle('show');
+      menuBtn.classList.toggle('open');
+    }
+
+    
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+   
+    document.addEventListener('click', function(e) {
+      const nav = document.getElementById('navMenu');
+      const menuBtn = document.querySelector('.menu-btn');
+      
+      if (!nav.contains(e.target) && !menuBtn.contains(e.target)) {
+        nav.classList.remove('show');
+        menuBtn.classList.remove('open');
+      }
+    });
+
+    
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.alternative-card, .tip-card').forEach(card => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(20px)';
+      card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(card);
+    });
+  </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'968ec7b7e073dbfc',t:'MTc1NDE1MDM0Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
